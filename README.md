@@ -1,8 +1,20 @@
 # API Biblioteca
 
-## Descripción
+## Descripción, Instalación y Configuración
 
 Este proyecto es una API RESTful para la gestión de una biblioteca, desarrollada con **Node.js** y **Express**. La API permite realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para libros y categorías, almacenando los datos en una base de datos relacional. La documentación de la API se ha realizado utilizando **Swagger**, lo cual facilita la consulta y prueba de los endpoints.
+
+**clonar el repositorio:**
+git clone https://github.com/tu_usuario/api-biblioteca.git
+cd api-biblioteca
+
+**instalar dependencias:**
+npm install
+
+**Ejecutar el Servidor:**
+node index.js 
+
+
 
 ## Funcionalidades del Proyecto
 
@@ -46,7 +58,7 @@ Para hacer el proyecto más robusto y llamativo, se han agregado algunas funcion
 
 La documentación de Swagger se encuentra disponible en `http://localhost:3000/api-docs` una vez que la API está en ejecución. Swagger proporciona una interfaz gráfica donde se pueden probar todos los endpoints de la API.
 
-## Estructura del Proyecto
+## Estructura del Proyecto 
 
 
 ```plaintext
@@ -64,13 +76,4 @@ API_BIBLIOTECA
 └── README.md              # Documentación del proyecto
 
 
-## Instalación y Configuración
-**clonar el repositorio:**
-git clone https://github.com/tu_usuario/api-biblioteca.git
-cd api-biblioteca
 
-**instalar dependencias:**
-npm install
-
-**Ejecutar el Servidor:** 
-node index.js 
