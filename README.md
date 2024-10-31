@@ -5,7 +5,8 @@
 Este proyecto es una API RESTful para la gestión de una biblioteca, desarrollada con **Node.js** y **Express**. La API permite realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para libros y categorías, almacenando los datos en una base de datos relacional. La documentación de la API se ha realizado utilizando **Swagger**, lo cual facilita la consulta y prueba de los endpoints.
 
 **clonar el repositorio:**
-git clone https://github.com/tu_usuario/api-biblioteca.git
+git clone https://github.com/fixbala/biblio_nequi.git
+
 cd api-biblioteca
 
 **instalar dependencias:**
