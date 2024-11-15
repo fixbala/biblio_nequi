@@ -37,6 +37,10 @@ const Category = require('../models/Category');
  *     responses:
  *       200:
  *         description: Categoría creada exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Category' 
  */
 router.post('/', async (req, res) => {
     try {
@@ -54,16 +58,16 @@ router.post('/', async (req, res) => {
  *   get:
  *     summary: Obtener todas las categorías
  *     tags: [Categories]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/Category'
  *     responses:
  *       200:
- *         description: Categoría obtenidas exitosamente
- */
+ *         description: Categorías obtenidas exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Category'
+ */ 
 // Obtener todas las categorías
 router.get('/', async (req, res) => {
     try {
@@ -77,20 +81,27 @@ router.get('/', async (req, res) => {
 
 /**
  * @swagger
- * /categories:
+ * /categories/{id}:
  *   get:
  *     summary: Obtener una categoría por ID
  *     tags: [Categories]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/Category'
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: ID de la categoría
  *     responses:
  *       200:
  *         description: Categoría obtenida exitosamente
- */
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Category'
+ *       404:
+ *         description: Categoría no encontrada
+ */ 
 // Obtener una categoría por ID
 router.get('/:id', async (req, res) => {
     try {
@@ -108,10 +119,17 @@ router.get('/:id', async (req, res) => {
 
 /**
  * @swagger
- * /categories:
+ * /categories/{id}:
  *   put:
  *     summary: Actualizar una categoría
  *     tags: [Categories]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: ID de la categoría
  *     requestBody:
  *       required: true
  *       content:
@@ -121,7 +139,13 @@ router.get('/:id', async (req, res) => {
  *     responses:
  *       200:
  *         description: Categoría actualizada exitosamente
- */
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Category'
+ *       404:
+ *         description: Categoría no encontrada
+ */ 
 // Actualizar una categoría
 router.put('/:id', async (req, res) => {
     try {
@@ -140,20 +164,31 @@ router.put('/:id', async (req, res) => {
 
 /**
  * @swagger 
- * /categories:
+ * /categories/{id}:
  *   delete:
  *     summary: Eliminar una categoría
  *     tags: [Categories]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/Category'
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: ID de la categoría
  *     responses:
- *       200: 
+ *       200:
  *         description: Categoría eliminada exitosamente
- */
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Mensaje de éxito
+ *       404:
+ *         description: Categoría no encontrada
+ */ 
 // Eliminar una categoría
 router.delete('/:id', async (req, res) => {
     try {
@@ -168,5 +203,5 @@ router.delete('/:id', async (req, res) => {
         res.status(500).json({ error: 'Error al eliminar la categoría' });
     }
 });
-
-module.exports = router;
+ 
+module.exports = router; 

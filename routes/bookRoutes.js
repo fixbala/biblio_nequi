@@ -42,7 +42,11 @@ const Book = require('../models/Book');
  *     responses:
  *       200:
  *         description: Libro creado exitosamente
- */
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Book'
+ */ 
 router.post('/', async (req, res) => {
     try {
         const book = await Book.create(req.body);
@@ -61,7 +65,13 @@ router.post('/', async (req, res) => {
  *     responses:
  *       200:
  *         description: Lista de todos los libros
- */
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Book'
+ */ 
 router.get('/', async (req, res) => {
     try {
         const books = await Book.findAll();
@@ -87,9 +97,13 @@ router.get('/', async (req, res) => {
  *     responses:
  *       200:
  *         description: Libro encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Book'
  *       404:
  *         description: Libro no encontrado
- */
+ */ 
 router.get('/:id', async (req, res) => {
     try {
         const book = await Book.findByPk(req.params.id);
@@ -106,20 +120,31 @@ router.get('/:id', async (req, res) => {
  
 /**
  * @swagger
- * /books:
+ * /books/{id}:
  *   delete:
  *     summary: Eliminar un libro
  *     tags: [Books]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/Book'
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID del libro
  *     responses: 
  *       200:
  *         description: Libro eliminado exitosamente
- */
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Mensaje de éxito
+ *       404:
+ *         description: Libro no encontrado
+ */ 
 // Eliminar un libro
 router.delete('/:id', async (req, res) => {
     try {
@@ -136,4 +161,4 @@ router.delete('/:id', async (req, res) => {
 });
 
 module.exports = router;
- 
+   
